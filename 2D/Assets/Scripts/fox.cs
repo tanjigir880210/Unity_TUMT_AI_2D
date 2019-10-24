@@ -2,15 +2,21 @@
 
 public class fox : MonoBehaviour
 {
+    public int speed = 1;
+    public float jump = 2.5f;
+    public string foxName = "林北是狐狸啦";
+    public bool pass = false;
+
+    private Rigidbody2D r2d;
+
     private void Start()
     {
-        Debug.Log("哈囉 薩諾斯彈指");
-        Debug.Log("薩諾斯:宇宙死一半了");
-        Debug.Log("薩諾斯:我的使命完成");
-        Debug.Log("約翰維克:有人看到我的狗嗎?");
-        Debug.Log("薩諾斯:幹!!!");
-        Debug.Log(".........");
-        Debug.Log(777);
-        Debug.Log(1.5f);
+        r2d = GetComponent<Rigidbody2D>();
+        tra = GetComponent<Transform>()
+    }
+
+    private void Update()
+    {
+        r2d.AddForce(new Vector2(speed * Input.GetAxis("Horizontal"), 0));
     }
 }
