@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class fox : MonoBehaviour
+public class NEW : MonoBehaviour
 {
     public int speed = 1;
     public float jump = 2.5f;
@@ -12,7 +12,6 @@ public class fox : MonoBehaviour
     private void Start()
     {
         r2d = GetComponent<Rigidbody2D>();
-        tra = GetComponent<Transform>()
     }
 
     private void Update()
