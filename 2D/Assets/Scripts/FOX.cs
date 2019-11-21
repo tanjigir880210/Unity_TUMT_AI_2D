@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NEW : MonoBehaviour
+public class FOX : MonoBehaviour
 {
     public int speed = 1;
     public float jump = 2.5f;
