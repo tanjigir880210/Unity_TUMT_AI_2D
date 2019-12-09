@@ -217,6 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 192238096}
   - component: {fileID: 192238095}
+  - component: {fileID: 192238097}
   m_Layer: 0
   m_Name: "\u7DF4\u7FD2\u7269\u4EF6"
   m_TagString: Untagged
@@ -250,6 +251,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &192238097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 192238094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9551795931ff3854d969c708dbd3ad3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  say: "\u54C8\u56C9! \u4F60\u597D\u55CE?"
 --- !u!1 &475088926
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,7 +853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   start: "\u55E8! \u6211\u9700\u8981\u4F60\u5E6B\u5FD9"
-  not_complete: "\u4F60\u9084\u6C92\u627E\u523010\u9846\u6C34\u679C"
+  notcomplete: "\u4F60\u9084\u6C92\u627E\u523010\u9846\u6C34\u679C"
   complete: "\u611F\u8B1D\u4F60\u5E6B\u6211\u5B8C\u6210\u5C0B\u627E"
   speed: 1.5
   missing_complete: 1
@@ -1169,7 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b29049e806dae4bb481b38b956ac8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 200
+  speed: 75
   jump: 2000
   foxName: "\u6797\u5317\u662F\u72D0\u72F8\u5566"
   pass: 0

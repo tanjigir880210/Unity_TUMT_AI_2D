@@ -17,7 +17,7 @@ public class NPC : MonoBehaviour
 
     [Header("對話內容")]
     public string start = "嗨! 我需要你幫忙";
-    public string not_complete = "你還沒找到10顆水果";
+    public string notcomplete = "你還沒找到10顆水果";
     public string complete = "感謝你幫我完成尋找";
 
     [Header("對話速度")]
@@ -55,8 +55,19 @@ public class NPC : MonoBehaviour
     {
         // 畫布.顯示
         objCanvas.SetActive(true);
-        // 文字介面.文字 = 對話1
-        textSay.text = start;
+
+        switch (_state)
+        {
+            case state.normal:
+                textSay.text = start;
+                break;
+            case state.notComplete:
+                textSay.text = notcomplete;
+                break;
+            case state.complete:
+                textSay.text = complete;
+                break;
+        }
     }
 
     /// <summary>
