@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI; // 引用 介面 API
+using System.Collections;
 
 public class NPC : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class NPC : MonoBehaviour
     public enum state
     {
         // 一般、尚未完成、完成
-        normal, notComplete, complete
+        Start, NotComplete, Complete
     }
     // 使用列舉
     // 修飾詞 類型 名稱
@@ -24,15 +25,23 @@ public class NPC : MonoBehaviour
     public float speed = 1.5f;
 
     [Header("任務相關")]
-    public bool missing_complete = true;
-    public string count_player;
-    public string count_finish = "10";
+    public bool missingcomplete = true;
+    public string countPlayer;
+    public string countFinish = "10";
 
     [Header("介面")]
     public GameObject objCanvas;
     public Text textSay;
     #endregion
 
+    public AudioClip soundSay;
+
+    private AudioSource aud;
+
+    private void Start()
+    {
+        aud = GetComponent<AudioSource>();
+    }
 
     // 2D 觸發事件
     private void OnTriggerEnter2D(Collider2D collision)
@@ -55,19 +64,34 @@ public class NPC : MonoBehaviour
     {
         // 畫布.顯示
         objCanvas.SetActive(true);
+        StopAllCoroutines();
 
+        // 判斷式(狀態)
         switch (_state)
         {
-            case state.normal:
-                textSay.text = start;
+            case state.Start:
+                StartCoroutine(ShowDialog(start)); // 開始對話
+                _state = state.NotComplete;
                 break;
-            case state.notComplete:
-                textSay.text = notcomplete;
+            case state.NotComplete:
+                StartCoroutine(ShowDialog(notcomplete)); // 開始對話未完成
                 break;
-            case state.complete:
-                textSay.text = complete;
+            case state.Complete:
+                StartCoroutine(ShowDialog(complete)); // 開始對話完成
                 break;
         }
+    }
+
+    private IEnumerator ShowDialog(string say)
+    {
+        textSay.text = ""; // 清空文字
+
+        for (int i = 0; i < say.Length; i++) // 迴圈跑對話.長度
+        {
+            textSay.text += say[i].ToString(); // 累加每個文字
+            aud.PlayOneShot(soundSay, 1.5f); // 播放一次音效(音效片段，音量)
+            yield return new WaitForSeconds(speed); // 等待
+        } 
     }
 
     /// <summary>
@@ -75,6 +99,15 @@ public class NPC : MonoBehaviour
     /// </summary>
     private void SayClose()
     {
+        StopAllCoroutines();
         objCanvas.SetActive(false);
+    }
+
+    /// <summary>
+    /// 玩家取得道具
+    /// </summary>
+    public void PlayerGet()
+    {
+        countPlayer++;
     }
 }
