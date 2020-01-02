@@ -1,5 +1,6 @@
-﻿using UnityEngine;                                // 引用 Unity API - API 倉庫 功能、工具
+﻿using UnityEngine;                  // 引用 Unity API - API 倉庫 功能、工具
 using UnityEngine.Events;           // 引用 事件 API
+using UnityEngine.UI;               // 引用 介面 API
 
 public class Fox : MonoBehaviour                  // 類別 類別名稱
 {
@@ -12,6 +13,11 @@ public class Fox : MonoBehaviour                  // 類別 類別名稱
     public bool isGround;
     [Header("血量"), Range(0, 200)]
     public float hp = 100;
+
+    public Image hpBar;
+    public GameObject final;
+
+    private float hpMax;
 
     public UnityEvent onEat;
 
@@ -28,6 +34,8 @@ public class Fox : MonoBehaviour                  // 類別 類別名稱
         // 泛型 <T>
         r2d = GetComponent<Rigidbody2D>();
         //tra = GetComponent<Transform>();
+
+        hpMax = hp;
     }
 
 
@@ -113,7 +121,9 @@ public class Fox : MonoBehaviour                  // 類別 類別名稱
     public void Damage(float damage)
     {
         hp -= damage;
+        hpBar.fillAmount = hp / hpMax;
 
+        if (hp <= 0) final.SetActive(true);
     }
 
 
